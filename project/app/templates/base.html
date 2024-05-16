@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        {% if context.logout%}
+        <a href="{% url 'home' %}">Logout</a>
+        {% else %}
+
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}">Contact</a>
+        <a href="{% url 'register' %}">Register</a>
+        <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+
+        
+
+    </header>
+    {%block content%}
+    <h1>this is leading page</h1>
+    {%endblock%}
+    <footer>
+        <h1> this is footer</h1>
+    </footer>
+    
+</body>
+</html>
