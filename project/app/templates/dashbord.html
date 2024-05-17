@@ -24,11 +24,54 @@
    <input type="submit" value="query">
     <br>
     <br>
-    <a href="{% url 'showdata' %}">Show data</a>
 </form>
 
+<!-- <a href="{% url 'showdata' %}">Show data</a> -->
+<form action="{% url 'showdata' %}" method="post">
+    {%csrf_token%}
+    <input type="email"  name='email' value="{{context.em}}" hidden>
+    <input type="submit" value="showdata">
+</form>
+{% if key1 %}
 
-    {% endblock %}
+<table border='1'>
+    <thead>
+        <tr>
+          <th>Id</th>
+          <th>Email</th>
+          <th>Tittle</th>
+          <th>Query</th>
+          <th>Delete</th>
+          <th>Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in key1 %}
+        <tr> 
+            <th>{{i.id}}</th>
+            <th>{{i.Email}}</th>
+            <th>{{i.Tittle}}</th>
+            <th>{{i.Dec}}</th>
+            <th>
+                <form action="{% url 'delete' pk=i.id ml=i.Email %}" method="post" name="Deleteform">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete">
+                </form>
+            </th>
+            <th>
+                <form action="{% url 'edit' pk=i.id ml=i.Email %}" method="post" name="editform">
+                    {% csrf_token %}
+                    <input type="submit" value="edit">
+                </form>
+            </th>
+        {% endfor %}
+        </tbody>
+      </thead>
+</table>
+{% endif %}
+
+
+{% endblock %}
 
 </body>
 </html>
