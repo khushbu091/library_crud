@@ -11,6 +11,23 @@
     {% block content %}
     <h1> welcome to the {{context.nm}}</h1>
     <h1> Query Form</h1>
+
+    {% if sedt %}
+<form action="{% url 'update' pk=sedt.id %}" method="post">
+    {% csrf_token %}
+    Tittle:<input type="text" name="tittle" value="{{sedt.Tittle}}">
+    <br>
+    Dec:<input type="text" name="dec" value="{{sedt.Dec}}">
+    <br>
+    Email:<input type="email" name="email" value="{{sedt.Email}}"  hidden>
+    <br>
+    Password:<input type="password" name="password" value="{{sedt.Password}}" hidden>
+    <br>
+    <button type="submit">update</button>
+    <br>
+    <br>
+</form>
+    {% else %}
 <form action="{% url 'query' %}" method="post">
     {% csrf_token %}
     Tittle:<input type="text" name="tittle">
@@ -20,20 +37,23 @@
     Email:<input type="email" name="email" value="{{context.em}}"  hidden>
     <br>
     Password:<input type="password" name="password" value="{{context.pass}}" hidden>
-
+    <br>
    <input type="submit" value="query">
     <br>
     <br>
 </form>
 
-<!-- <a href="{% url 'showdata' %}">Show data</a> -->
+{% endif%}
+
+
 <form action="{% url 'showdata' %}" method="post">
     {%csrf_token%}
     <input type="email"  name='email' value="{{context.em}}" hidden>
     <input type="submit" value="showdata">
 </form>
-{% if key1 %}
 
+
+{% if key1 %}
 <table border='1'>
     <thead>
         <tr>
@@ -59,9 +79,48 @@
                 </form>
             </th>
             <th>
-                <form action="{% url 'edit' pk=i.id ml=i.Email %}" method="post" name="editform">
+                <form  action="{% url 'edit' pk=i.id %}" method="post" name="editform">
                     {% csrf_token %}
-                    <input type="submit" value="edit">
+                    <input type="text" name="email" value="{{i.Email}}" hidden>
+                    <button type="submit"> Edit</button>
+
+                </form>
+            </th>
+        {% endfor %}
+        </tbody>
+      </thead>
+</table>
+{% else %}
+<table border='1'>
+    <thead>
+        <tr>
+          <th>Id</th>
+          <th>Email</th>
+          <th>Tittle</th>
+          <th>Query</th>
+          <th>Delete</th>
+          <th>Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in key1 %}
+        <tr> 
+            <th>{{i.id}}</th>
+            <th>{{i.Email}}</th>
+            <th>{{i.Tittle}}</th>
+            <th>{{i.Dec}}</th>
+            <th>
+                <form action="{% url 'delete' pk=i.id ml=i.Email %}" method="post" name="Deleteform">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete">
+                </form>
+            </th>
+            <th>
+                <form  action="{% url 'edit' pk=i.id %}" method="post" name="editform">
+                    {% csrf_token %}
+                    <input type="text" name="email" value="{{i.Email}}" hidden>
+                    <button type="submit"> Edit</button>
+
                 </form>
             </th>
         {% endfor %}

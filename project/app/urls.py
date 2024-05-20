@@ -14,8 +14,8 @@ urlpatterns = [
     path('query/',query,name='query'),
     path('showdata/',showdata,name='showdata'),
     path('delete/<int:pk>/<ml>',delete,name='delete'),
-    path('edit/<int:pk>/<ml>',edit,name='edit'),
-
+    path('edit/<int:pk>/',edit,name='edit'),
+    path('update/<int:pk>/',update,name='update')
 
 
 

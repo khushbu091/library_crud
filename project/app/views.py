@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 from django.db.models import Q
 
@@ -108,7 +108,7 @@ def showdata(request):
 def delete(request,pk,ml):
     sdel=Query.objects.get(id=pk)
     sdel.delete()
-    eml=Query.objects.filter(Email=ml)
+    elifml=Query.objects.filter(Email=ml)
     msg='data delete'
     datas=Query.objects.filter(Email=ml)
     if datas:
@@ -122,19 +122,44 @@ def delete(request,pk,ml):
     all_data=Query.objects.filter(Email=ml)
     return render(request,'dashbord.html',{'key1':all_data,'context':context})
 
-def edit(request,pk,ml):
+def edit(request,pk):
+    print(request.POST)
+    email=request.POST.get('email')
     sedt=Query.objects.get(id=pk)
-    ml=Query.objects.filter(Email=ml)
-    msg='edit data'
-    datas=Query.objects.filter(Email=ml)
-    if datas:
-        user1=Student.objects.get(Email=ml)
+    
+    print("sumit",sedt)
+    ml=Student.objects.filter(Email=email)
+    msg='data edit'
+    if ml:
+        user1=Student.objects.get(Email=email)
         context={
                 'nm':user1.Name,
                 'em':user1.Email,
                 'pass':user1.Password,
                 'logout':'logout'
             } 
-    all_data=Query.objects.filter(Email=ml)
-    return render(request,'dashbord.html',{'key1':all_data,'context':context})
+    return render(request,'dashbord.html',{'sedt':sedt,'context':context})
+
+def update(request,pk):
+    udata=Query.objects.get(id=pk)
+    udata.Tittle=request.POST['tittle']
+    udata.Dec=request.POST['dec']
+    udata.save()
+    email=request.POST.get('email')
+    ml=Student.objects.filter(Email=email)
+    msg='update data'
+    
+    if ml:
+        udata=Student.objects.get(Email=email)
+
+        context={
+                'nm':udata.Name,
+                'em':udata.Email,
+                'pass':udata.Password,
+                'logout':'logout'
+            } 
+   
+    return render(request,'dashbord.html',{'udata':udata,'context':context})
+
+  
 
