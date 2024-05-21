@@ -127,7 +127,7 @@ def edit(request,pk):
     email=request.POST.get('email')
     sedt=Query.objects.get(id=pk)
     
-    print("sumit",sedt)
+    print("khushi",sedt)
     ml=Student.objects.filter(Email=email)
     msg='data edit'
     if ml:

@@ -8,10 +8,61 @@
     <title>Document</title>
 </head>
 <body>
+
     {% block content %}
-    <h1> this is home page</h1>
-    {% endblock %}
+    <img src="{% static 'images/s1.jpg'%}" class="img-fluid" alt="..." width="100%" height="300px">
+    <br>
+    <br>
     
+    <div class="card-group">
+        <div class="card" style="width: 300px;">
+        <center> <img src="{% static 'images/b1.png'%}" class="img-fluid rounded" alt="Townhouses and Skyscrapers" height="280px" width="250px"/></center>
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+          <div class="btn">
+            <button style="height: 40px; width: 130px; background-color: black; color: white; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size:16px ; border-radius: 50px;"> Read More</button>
+         </div>
+          
+        </div>
+        <div class="card">
+        <center> <img src="{% static 'images/b2.jpeg'%}" class="img-fluid rounded" alt="Townhouses and Skyscrapers" height="280px" width="250px"/></center>
+            <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+          </div>
+         <div class="btn">
+            <button style="height: 40px; width: 130px; background-color: black; color: white; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size:16px ; border-radius: 50px;"> Read More</button>
+         </div>
+        </div>
+        <div class="card">
+            <center> <img src="{% static 'images/b3.webp'%}" class="img-fluid rounded" alt="Townhouses and Skyscrapers" height="280px" width="250px"/></center>
+
+            <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+          <div class="btn">
+            <button style="height: 40px; width: 130px; background-color: black; color: white; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size:16px ; border-radius: 50px;"> Read More</button>
+         </div>
+        </div>
+        <div class="card">
+            <center> <img src="{% static 'images/b4.jpg'%}" class="img-fluid rounded" alt="Townhouses and Skyscrapers" height="280px" width="250px"/></center>
+
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="btn">
+                <button style="height: 40px; width: 130px; background-color: black; color: white; font-family: Verdana, Geneva, Tahoma, sans-serif; font-size:16px ; border-radius: 50px;"> Read More</button>
+             </div>
+        </div>
+      </div>
+   
+    
+    
+    {% endblock %}
     
 </body>
 </html>
