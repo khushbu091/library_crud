@@ -9,124 +9,118 @@
 </head>
 <body>
     {% block content %}
-    <h1> welcome to the {{context.nm}}</h1>
-    <h1> Query Form</h1>
 
-    {% if sedt %}
-<form action="{% url 'update' pk=sedt.id %}" method="post">
-    {% csrf_token %}
-    Tittle:<input type="text" name="tittle" value="{{sedt.Tittle}}">
-    <br>
-    Dec:<input type="text" name="dec" value="{{sedt.Dec}}">
-    <br>
-    Email:<input type="email" name="email" value="{{sedt.Email}}"  hidden>
-    <br>
-    Password:<input type="password" name="password" value="{{sedt.Password}}" hidden>
-    <br>
-    <button type="submit">update</button>
+    <center><h1 style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> welcome to the {{context.nm}}</h1></center>
+        {% if sedt %}
+    <center><form action="{% url 'update' pk=sedt.id %}" method="post" class="form" style="width: 500px; 
+    height: 400px; background-color: whitesmoke; justify-content:baseline; padding: 20px; border-radius: 40px;">
+        {% csrf_token %}
+        <center><h1>Update Form</h1></center>
+    Tittle:<input type="text" name="tittle" value="{{sedt.Tittle}}" class="input" style="border: 1px; padding-left: 5px; margin-left: 5px;
+    border-color: black; border-radius: 40px;">
     <br>
     <br>
-</form>
+    Dec:<input type="text" name="dec" value="{{sedt.Dec}}" class="input" style="border: 1px; padding-left: 5px; margin-left: 5px;
+    border-color: black; border-radius: 40px;">
+    <br>
+    <br>
+    Email:<input type="email" name="email" value="{{sedt.Email}}"  hidden class="input" style="border: 1px; padding-left: 5px; margin-left: 5px;
+    border-color: black; border-radius: 40px;">
+    <br>
+    <br>
+    Password:<input type="password" name="password" value="{{sedt.Password}}" hidden class="input" style="border: 1px; padding-left: 5px; margin-left: 5px;
+    border-color: black; border-radius: 40px;">
+    <br>
+    <br>
+    <button type="submit" class="btn" style="border-radius: 50px;
+    background-color: black; color: white; width: 90px; height: 40px;">Update</button>
+    <br>
+    <br>
+    </form></center>
     {% else %}
-<form action="{% url 'query' %}" method="post">
-    {% csrf_token %}
-    Tittle:<input type="text" name="tittle">
+
+    <center><form action="{% url 'query' %}" method="post"  class="form" style="width: 500px; 
+    height: 400px; background-color: whitesmoke; justify-content:baseline; padding: 20px; border-radius: 40px;">
+        <h1> Query Form</h1>
+        <br>
+        {% csrf_token %}
+    Tittle:<input type="text" name="tittle" class="input" style="border: 1px; padding-left: 5px; margin-left: 5px;
+    border-color: black; border-radius: 40px;">
     <br>
-    Dec:<input type="text" name="dec">
     <br>
-    Email:<input type="email" name="email" value="{{context.em}}"  hidden>
+    Dec:<input type="text" name="dec" class="input" style="border: 1px; padding-left: 5px; margin-left: 5px;
+    border-color: black; border-radius: 40px;">
     <br>
-    Password:<input type="password" name="password" value="{{context.pass}}" hidden>
     <br>
-   <input type="submit" value="query">
+    Email:<input type="email" name="email" value="{{context.em}}"  hidden class="input" style="border: 1px; padding-left: 5px; margin-left: 5px;
+    border-color: black; border-radius: 40px;">
+    <br>
+    <br>
+    Password:<input type="password" name="password" value="{{context.pass}}" hidden class="input" style="border: 1px; padding-left: 5px; margin-left: 5px;
+    border-color: black; border-radius: 40px;"v>
+    <br>
+    <br>
+   <input type="submit" value="query" class="btn" style="border-radius: 50px;
+   background-color: black; color: white; width: 90px; height: 40px;">
     <br>
     <br>
 </form>
+</center>
 
 {% endif%}
 
-
-<form action="{% url 'showdata' %}" method="post">
+<br>
+<center><form action="{% url 'showdata' %}" method="post">
     {%csrf_token%}
     <input type="email"  name='email' value="{{context.em}}" hidden>
-    <input type="submit" value="showdata">
+    <input type="submit" value="showdata"  class="btn" style="border-radius: 30px;
+    background-color: rgb(44, 5, 5); color: white; width: 90px; height: 40px;">
 </form>
+</center>
 
 
 {% if key1 %}
-<table border='1'>
-    <thead>
-        <tr>
-          <th>Id</th>
-          <th>Email</th>
-          <th>Tittle</th>
-          <th>Query</th>
-          <th>Delete</th>
-          <th>Update</th>
+<div class="table-container" style=" display: flex;
+justify-content: center; align-items: center; height: 60vh;">
+<table border='1' style="width: 80%; border-collapse: collapse;">
+    <thead style="border: 1px solid #dddddd; text-align: left; padding: 8px;">
+        <tr style="background-color: #f2f2f2;">
+          <th style="background-color: #4CAF50; color: white;">Id</th>
+          <th style="background-color: #4CAF50; color: white;">Email</th>
+          <th style="background-color: #4CAF50; color: white;">Tittle</th>
+          <th style="background-color: #4CAF50; color: white;">Query</th>
+          <th style="background-color: #4CAF50; color: white;">Delete</th>
+          <th style="background-color: #4CAF50; color: white;">Update</th>
         </tr>
     </thead>
     <tbody>
         {% for i in key1 %}
         <tr> 
-            <th>{{i.id}}</th>
-            <th>{{i.Email}}</th>
-            <th>{{i.Tittle}}</th>
-            <th>{{i.Dec}}</th>
-            <th>
-                <form action="{% url 'delete' pk=i.id ml=i.Email %}" method="post" name="Deleteform">
+            <td>{{i.id}}</td>
+            <td>{{i.Email}}</td>
+            <td>{{i.Tittle}}</td>
+            <td>{{i.Dec}}</td>
+            <td>
+                <form  action="{% url 'delete' pk=i.id %}" method="post".>
                     {% csrf_token %}
-                    <input type="submit" value="Delete">
+                    <input type="text" name="email" value="{{i.Email}}" hidden>
+                    <button type="submit">Delete</button>
+
                 </form>
-            </th>
-            <th>
+            </td>
+            <td>
                 <form  action="{% url 'edit' pk=i.id %}" method="post" name="editform">
                     {% csrf_token %}
                     <input type="text" name="email" value="{{i.Email}}" hidden>
                     <button type="submit"> Edit</button>
 
                 </form>
-            </th>
+            </td>
         {% endfor %}
         </tbody>
       </thead>
 </table>
-{% else %}
-<table border='1'>
-    <thead>
-        <tr>
-          <th>Id</th>
-          <th>Email</th>
-          <th>Tittle</th>
-          <th>Query</th>
-          <th>Delete</th>
-          <th>Update</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for i in key1 %}
-        <tr> 
-            <th>{{i.id}}</th>
-            <th>{{i.Email}}</th>
-            <th>{{i.Tittle}}</th>
-            <th>{{i.Dec}}</th>
-            <th>
-                <form action="{% url 'delete' pk=i.id ml=i.Email %}" method="post" name="Deleteform">
-                    {% csrf_token %}
-                    <input type="submit" value="Delete">
-                </form>
-            </th>
-            <th>
-                <form  action="{% url 'edit' pk=i.id %}" method="post" name="editform">
-                    {% csrf_token %}
-                    <input type="text" name="email" value="{{i.Email}}" hidden>
-                    <button type="submit"> Edit</button>
-
-                </form>
-            </th>
-        {% endfor %}
-        </tbody>
-      </thead>
-</table>
+</div>
 {% endif %}
 
 

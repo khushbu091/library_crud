@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import *
 from django.db.models import Q
 
+
 # from django.shortcuts import redirect
 
 # Create your views here.
@@ -90,10 +91,9 @@ def query(request):
     return render(request,'dashbord.html',{'key':all_data,'context':context})
 
 def showdata(request):
-    print(request.POST)
     emails=request.POST.get('email')
 
-    datas=Query.objects.filter(Email=emails)
+    datas=Student.objects.filter(Email=emails)
     if datas:
        user1=Student.objects.get(Email=emails)
        context={
@@ -105,21 +105,20 @@ def showdata(request):
        all_data=Query.objects.filter(Email=emails)
        return render(request,'dashbord.html',{'key1':all_data,'context':context})
 
-def delete(request,pk,ml):
+def delete(request,pk):
+    email=request.POST.get('email')
     sdel=Query.objects.get(id=pk)
     sdel.delete()
-    elifml=Query.objects.filter(Email=ml)
-    msg='data delete'
-    datas=Query.objects.filter(Email=ml)
+    datas=Student.objects.filter(Email=email)
     if datas:
-        user1=Student.objects.get(Email=ml)
+        user1=Student.objects.get(Email=email)
         context={
                 'nm':user1.Name,
                 'em':user1.Email,
                 'pass':user1.Password,
                 'logout':'logout'
             } 
-    all_data=Query.objects.filter(Email=ml)
+    all_data=Query.objects.filter(Email=email)
     return render(request,'dashbord.html',{'key1':all_data,'context':context})
 
 def edit(request,pk):
@@ -160,6 +159,6 @@ def update(request,pk):
             } 
    
     return render(request,'dashbord.html',{'udata':udata,'context':context})
-
+   
   
 
